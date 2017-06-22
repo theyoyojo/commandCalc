@@ -35,24 +35,34 @@ def divide(words):
 	return results
 
 #make sure the command exists and has a correct number of arguments TODO
-def validateCommand(words):
-	commandFile = open("commands.txt","w")
-	if os.stat("commandFile").st_size == 0
-		commandFile.write("add\nsubtract\nmultiply\ndivide\n")
+def validateCommand(words, commandFile):
 	valid = commandFile.readlines()
 	print(valid)
 	return True
-		
+
+#make sure command exists and is allowed, then check if arguments are valid
+def validateCommandFile(valid):
+	try:
+		commandFile = open("commands.txt","r+")
+	except FileNotFoundError:
+		commandFile = open("commands.txt","w")	
+		for item in valid:
+			commandFile.write(item)
+	else:
+		True
+		#validate user command file TODO
+	return commandFile #remove this when done, function should do all of the work
+
 def output(output):
 	print(output)
 
 #get and process input
-def inputLoop(prompt):
+def inputLoop(prompt,commandFile):
 	exit = 0
 	while(exit == 0):
 		raw = input(prompt)
 		words = raw.split()
-		if words and validateCommand(words):
+		if words and validateCommand(words, commands):
 			output(eval(words[0] + "(" + str(words) + ")"))
 		if words:
 			if words[0] == "exit":
@@ -61,6 +71,9 @@ def inputLoop(prompt):
 #setup anything, display information, start things up
 def main():
 	print("Command Calculator v0.1 alpha")
-	inputLoop("(+-*/)>>")
+	inputLoop("(+-*/)>>",getCommandFile())
 	
-main()
+coms = validateCommandFile()
+
+for i in coms:
+	print(i)
