@@ -1,15 +1,16 @@
 #First, the header. This defines the possible attributes and the types of their values
 {
-	name=string
+	key=string
 	minarg=int
 	maxarg=int
 }
 #now, the body. This is where the attributes are given values for every instance
 {
-	name='add'
+	key=add
 	minarg=2
 }
 {
-	name='subtract'
+	key=subtract
 	minarg=2
+	maxarg=6
 }
